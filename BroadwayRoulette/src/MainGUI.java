@@ -1,5 +1,4 @@
 import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -22,7 +21,7 @@ public class MainGUI extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		descriptions = new JButton("Kg --> LB");
+		descriptions = new JButton("Descriptions");
 		descriptions.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				descriptShow();
@@ -31,7 +30,7 @@ public class MainGUI extends JFrame {
 		descriptions.setBounds(149, 53, 117, 29);
 		contentPane.add(descriptions);
 		
-		startBuy = new JButton("Cm --> Inch");
+		startBuy = new JButton("Start Buy");
 		startBuy.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				startBuyShow();
@@ -42,12 +41,32 @@ public class MainGUI extends JFrame {
 	}
 	
 	public void descriptShow() {
-		Descript descript = new Descript();
+		DescriptGUI descript = new DescriptGUI();
 		descript.show();
 	}
 	
 	public void startBuyShow() {
-		
+		BuyingGUI buy = new BuyingGUI();
+		buy.show();
 	}
-		
+	
+	public void paymentShow() {
+		PaymentGUI pay = new PaymentGUI();
+		pay.show();
+	}
+	
+	public void finalPageShow() {
+		FinalPageGUI finalPage = new FinalPageGUI();
+		finalPage.show();
+	}
+	
+	public void viewTixShow() {
+		ViewTicketGUI view = new ViewTicketGUI();
+		view.show();
+	}
+	
+	public void sellTixShow() {
+		SellTicketGUI sell = new SellTicketGUI();
+		sell.show();
+	}
 }
