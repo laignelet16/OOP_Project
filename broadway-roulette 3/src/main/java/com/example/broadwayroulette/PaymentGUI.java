@@ -128,7 +128,7 @@ public class PaymentGUI extends JFrame{
         panel.add(createTextField("Name Seen on Card (e.g. Jane Doe) : ", cardName = new JTextField()));
         panel.add(createTextField("6 Digit Card Number: ", cardNum = new JTextField()));
         panel.add(createTextField("3 Digit CVV: ", CVV = new JTextField()));
-        panel.add(createTextField("Card Date: (e.g. '3/15/23')", cardDate = new JTextField()));
+        panel.add(createTextField("Card Date: (e.g. '03/15/23')", cardDate = new JTextField()));
 		
 		add(panel);
 	}

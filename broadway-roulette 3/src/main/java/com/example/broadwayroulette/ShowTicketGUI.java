@@ -29,7 +29,7 @@ public class ShowTicketGUI extends JFrame{
 		int rand_int = rand.nextInt(selectedChoices.size());
 		String fate = selectedChoices.get(rand_int);
 		
-		setTitle("Thank you for your purchase!");
+		setTitle("Thank you for your purchase! Hope you like your roulette show!");
         setSize(600, 400);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
