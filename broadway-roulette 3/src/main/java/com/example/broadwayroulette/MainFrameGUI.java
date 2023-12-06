@@ -7,11 +7,13 @@ import java.awt.event.ActionListener;
 // TO DO: 
 // learn how to add an image
 // this is the main frame that will show the options the customer can see
+
+// This will always be on - because it never closes it 
 public class MainFrameGUI extends JFrame{
 	public MainFrameGUI() {
 		setTitle("Broadway Show Roulette");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setSize(400,300);
+		setSize(400,400);
 		setLayout(new BorderLayout());
 		getContentPane().setBackground(Color.LIGHT_GRAY);
 		
@@ -35,6 +37,7 @@ public class MainFrameGUI extends JFrame{
 		
 		b1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
 				BroadwayShowGUI bsg = new BroadwayShowGUI();
 				bsg.show();
 			}
@@ -42,6 +45,7 @@ public class MainFrameGUI extends JFrame{
 		
 		b2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
 				BuyTicketGUI buy = new BuyTicketGUI();
 				buy.show();
 			}

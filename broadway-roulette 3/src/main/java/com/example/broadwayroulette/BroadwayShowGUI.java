@@ -38,9 +38,10 @@ public class BroadwayShowGUI extends JFrame {
         scrollPane = new JScrollPane(table);
         add(scrollPane);
         
+//      BUTTON PANEL
         JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
 		buttonPanel.setBackground(Color.DARK_GRAY);
-		JButton back = new JButton("back");
+		JButton back = new JButton("BACK");
 		buttonPanel.add(back);
 		add(buttonPanel, BorderLayout.SOUTH);
 		
