@@ -2,6 +2,8 @@ package com.example.broadwayroulette;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumnModel;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -15,7 +17,7 @@ public class BroadwayShowGUI extends JFrame {
 
     public BroadwayShowGUI() {
         setTitle("Broadway Shows");
-        setSize(600, 400);
+        setSize(1300, 400);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
      // Create a JLabel with text
@@ -60,7 +62,7 @@ public class BroadwayShowGUI extends JFrame {
     private void fetchData() {
         try {
             Connection connection = DatabaseConnection.getConnection();
-            String query = "SELECT show_name, show_date, show_time FROM broadway";
+            String query = "SELECT show_name, show_date, show_time, show_description FROM broadway2";
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             ResultSet resultSet = preparedStatement.executeQuery();
 
@@ -72,14 +74,18 @@ public class BroadwayShowGUI extends JFrame {
                 String showName = resultSet.getString("show_name");
                 String date = resultSet.getString("show_date");
                 String time = resultSet.getString("show_time");
+                String description = resultSet.getString("show_description");
 
                 // Create an instance of BroadwayShowModel and add it to the list
-                BroadwayShowModel show = new BroadwayShowModel(showName, date, time);
+                BroadwayShowModel show = new BroadwayShowModel(showName, date, time, description);
                 showList.add(show);
             }
 
             // Create a TableModel and set it to the JTable
             table.setModel(buildTableModel(showList));
+         // Set the preferred width for the "Description" column
+            TableColumnModel columnModel = table.getColumnModel();
+            columnModel.getColumn(3).setPreferredWidth(700);
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -88,18 +94,20 @@ public class BroadwayShowGUI extends JFrame {
 
     private DefaultTableModel buildTableModel(List<BroadwayShowModel> showList) {
         // Build a TableModel from the Broadway show list
-        String[] columnNames = {"Show Name", "Date", "Time"};
-        Object[][] data = new Object[showList.size()][3];
+        String[] columnNames = {"Show Name", "Date", "Time", "Description"};
+        Object[][] data = new Object[showList.size()][4];
 
         for (int i = 0; i < showList.size(); i++) {
             BroadwayShowModel show = showList.get(i);
             data[i][0] = show.getShowName();
             data[i][1] = show.getDate();
             data[i][2] = show.getTime();
+            data[i][3] = show.getDescription();
         }
 
         return new DefaultTableModel(data, columnNames);
-    }
+     };
+
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {

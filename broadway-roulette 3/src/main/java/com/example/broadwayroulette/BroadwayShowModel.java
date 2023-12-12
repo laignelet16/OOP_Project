@@ -6,11 +6,13 @@ public class BroadwayShowModel {
     private String date;
     private String time;
     private String id;
+    private String description;
 
-    public BroadwayShowModel(String showName, String date, String time) {
+    public BroadwayShowModel(String showName, String date, String time, String description) {
         this.showName = showName;
         this.date = date;
         this.time = time;
+        this.description = description;
     }
     
     public BroadwayShowModel(String id, String showName) {
@@ -32,5 +34,8 @@ public class BroadwayShowModel {
 
     public String getTime() {
         return time;
+    }
+    public String getDescription() {
+        return description;
     }
 }

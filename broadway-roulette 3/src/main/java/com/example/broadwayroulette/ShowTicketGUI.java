@@ -3,6 +3,7 @@ package com.example.broadwayroulette;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -19,6 +20,7 @@ import javax.swing.*;
 public class ShowTicketGUI extends JFrame{
 	private TicketInfo ticketInfo;
 	private JLabel showDetailsLabel;
+	private JLabel confirmationLabel;
 	static String labelText;
 	
 	public ShowTicketGUI(TicketInfo ticketInfo) {
@@ -29,7 +31,7 @@ public class ShowTicketGUI extends JFrame{
 		int rand_int = rand.nextInt(selectedChoices.size());
 		String fate = selectedChoices.get(rand_int);
 		
-		setTitle("Thank you for your purchase! Hope you like your roulette show!");
+		setTitle("Congratulations! You are seeing a Broadway Show!");
         setSize(600, 400);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
@@ -42,10 +44,11 @@ public class ShowTicketGUI extends JFrame{
         pathPanel.add(path);
         pathPanel.setBackground(Color.YELLOW);
         // Add the label to the content pane of the JFrame
-        add(pathPanel, BorderLayout.NORTH);
+        add(pathPanel, BorderLayout.LINE_END);
         
 //		Fetch data and do a label
         showDetailsLabel = new JLabel();
+        confirmationLabel = new JLabel();
 		fetchData(fate);
 		
         JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
@@ -78,7 +81,7 @@ public class ShowTicketGUI extends JFrame{
 	private void fetchData(String show) {
         try {
             Connection connection = DatabaseConnection.getConnection();
-            String query = "SELECT show_name, show_date, show_time FROM broadway WHERE show_name=?";
+            String query = "SELECT show_name, show_date, show_time FROM broadway2 WHERE show_name=?";
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString(1, show);
             ResultSet resultSet = preparedStatement.executeQuery();
@@ -91,10 +94,28 @@ public class ShowTicketGUI extends JFrame{
                 labelText = "<html>ShowName: " + showName + "<br>Show Date: " + showDate +"<br>Show Time: " + showTime + "</html>"; 
                 showDetailsLabel.setText(labelText);
                 showDetailsLabel.setAlignmentX(Component.CENTER_ALIGNMENT); 
+                String confirmationNumber = generateConfirmationNumber();
+                confirmationLabel.setText("Confirmation Number: " + confirmationNumber);
+                confirmationLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
             }
             add(showDetailsLabel, BorderLayout.CENTER);
+            add(confirmationLabel, BorderLayout.PAGE_START);
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+	
+	private String generateConfirmationNumber() {
+        int length = 8;
+        String characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+        StringBuilder confirmationNumber = new StringBuilder();
+
+        Random random = new Random();
+        for (int i = 0; i < length; i++) {
+            int index = random.nextInt(characters.length());
+            confirmationNumber.append(characters.charAt(index));
+        }
+
+        return confirmationNumber.toString();
     }
 }

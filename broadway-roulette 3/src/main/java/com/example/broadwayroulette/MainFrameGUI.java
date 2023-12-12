@@ -25,17 +25,17 @@ public class MainFrameGUI extends JFrame{
 		JPanel buttonPanel = new JPanel(new FlowLayout());
 		buttonPanel.setBackground(Color.DARK_GRAY);
 		
-		JButton b1 = new JButton("View Show Descriptions");
-		JButton b2 = new JButton("Buy tickets");
+		JButton viewShow = new JButton("View Show Descriptions");
+		JButton buyTickets = new JButton("Buy tickets");
 		
 		JButton exit = new JButton("Exit");
 		
-		buttonPanel.add(b1);
-		buttonPanel.add(b2);
+		buttonPanel.add(viewShow);
+		buttonPanel.add(buyTickets);
 		buttonPanel.add(exit);
 		add(buttonPanel, BorderLayout.SOUTH);
 		
-		b1.addActionListener(new ActionListener() {
+		viewShow.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
 				BroadwayShowGUI bsg = new BroadwayShowGUI();
@@ -43,7 +43,7 @@ public class MainFrameGUI extends JFrame{
 			}
 		});
 		
-		b2.addActionListener(new ActionListener() {
+		buyTickets.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
 				BuyTicketGUI buy = new BuyTicketGUI();

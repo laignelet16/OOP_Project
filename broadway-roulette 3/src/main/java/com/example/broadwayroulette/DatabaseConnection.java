@@ -10,7 +10,7 @@ public class DatabaseConnection {
     public static Connection getConnection() throws SQLException {
         if (connection == null || connection.isClosed()) {
             try {
-                String url = "jdbc:mysql://localhost:3306/broadwayshow";
+                String url = "jdbc:mysql://localhost:3306/broadwayshow1";
                 String username = "root";
                 String password = "password";
                 connection = DriverManager.getConnection(url, username, password);

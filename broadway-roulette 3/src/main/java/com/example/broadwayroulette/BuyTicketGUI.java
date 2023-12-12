@@ -128,7 +128,7 @@ public class BuyTicketGUI extends JFrame{
 	private void fetchData() {
         try {
             Connection connection = DatabaseConnection.getConnection();
-            String query = "SELECT show_name, show_date, show_time FROM broadway";
+            String query = "SELECT show_name, show_date, show_time FROM broadway2";
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             ResultSet resultSet = preparedStatement.executeQuery();
 
