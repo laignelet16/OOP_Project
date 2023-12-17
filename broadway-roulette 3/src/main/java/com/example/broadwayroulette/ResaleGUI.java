@@ -12,6 +12,7 @@ import javax.swing.*;
 public class ResaleGUI extends JFrame {
 	private JTextField resalePrice;
     private JLabel showDetailsLabel;
+    private JCheckBox confirmCheckBox; 
 
     public ResaleGUI(String labelText) {
         setTitle("Resale Ticket");
@@ -43,7 +44,7 @@ public class ResaleGUI extends JFrame {
         panel.add(new JLabel("Resale Price"));
         panel.add(resalePrice);
 
-        JCheckBox confirmCheckBox = new JCheckBox("I confirm the resale and that I have 30 days to sell my ticket before it can no longer be resold.");
+        confirmCheckBox = new JCheckBox("I confirm the resale and that I have 30 days to sell my ticket before it can no longer be resold.");
         panel.add(confirmCheckBox);
 
         JButton cancelButton = new JButton("Cancel");
@@ -55,19 +56,10 @@ public class ResaleGUI extends JFrame {
             }
         });
         panel.add(cancelButton);
-
-        JButton resaleButton = new JButton("Resale");
-        resaleButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                if (confirmCheckBox.isSelected()) {
-                    handleResale();
-                } else {
-                    JOptionPane.showMessageDialog(ResaleGUI.this, "Please check the checkbox to confirm the terms.", "Confirmation Required", JOptionPane.WARNING_MESSAGE);
-                }
-            }
-        });
-        panel.add(resaleButton);
-
+       
+        JButton resaleBtn1 = new JButton("Resale");
+        panel.add(resaleBtn1);
+        resaleApprove(resaleBtn1);
         add(panel);
     }
 
@@ -94,4 +86,16 @@ public class ResaleGUI extends JFrame {
         MainFrameGUI frame = new MainFrameGUI();
         frame.show();
     }
+    
+    private void resaleApprove(JButton resaleBtn1) {
+    	resaleBtn1.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                if (confirmCheckBox.isSelected()) {
+                    handleResale();
+                } else {
+                    JOptionPane.showMessageDialog(ResaleGUI.this, "Please check the checkbox to confirm the terms.", "Confirmation Required", JOptionPane.WARNING_MESSAGE);
+                }
+            }
+        });
+	}
 }

@@ -4,11 +4,6 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-// TO DO: 
-// learn how to add an image
-// this is the main frame that will show the options the customer can see
-
-// This will always be on - because it never closes it 
 public class MainFrameGUI extends JFrame{
 	public MainFrameGUI() {
 		setTitle("Broadway Show Roulette");
@@ -35,21 +30,25 @@ public class MainFrameGUI extends JFrame{
 		buttonPanel.add(exit);
 		add(buttonPanel, BorderLayout.SOUTH);
 		
-		viewShow.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				setVisible(false);
-				BroadwayShowGUI bsg = new BroadwayShowGUI();
-				bsg.show();
-			}
-		});
+//		viewShow.addActionListener(new ActionListener() {
+//			public void actionPerformed(ActionEvent e) {
+//				setVisible(false);
+//				BroadwayShowGUI bsg = new BroadwayShowGUI();
+//				bsg.show();
+//			}
+//		});
 		
-		buyTickets.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				setVisible(false);
-				BuyTicketGUI buy = new BuyTicketGUI();
-				buy.show();
-			}
-		});
+		viewShow(viewShow); 
+		
+		
+//		buyTickets.addActionListener(new ActionListener() {
+//			public void actionPerformed(ActionEvent e) {
+//				setVisible(false);
+//				BuyTicketGUI buy = new BuyTicketGUI();
+//				buy.show();
+//			}
+//		});
+		buyTicket(buyTickets);
 		
 		exit.addActionListener(new ActionListener() {
             @Override
@@ -57,6 +56,26 @@ public class MainFrameGUI extends JFrame{
                 System.exit(0);
             }
         });
+	}
+	
+	private void viewShow(JButton viewShow) {
+		viewShow.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
+				BroadwayShowGUI bsg = new BroadwayShowGUI();
+				bsg.show();
+			}
+		});
+	}
+	
+	private void buyTicket(JButton buyTickets) {
+		buyTickets.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
+				BuyTicketGUI buy = new BuyTicketGUI();
+				buy.show();
+			}
+		});
 	}
 	
 	public static void main(String[] args) {

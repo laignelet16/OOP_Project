@@ -97,6 +97,44 @@ public class PaymentGUI extends JFrame{
 		add(buttonPanel, BorderLayout.SOUTH);
 		
 //		Validation of the card information
+//		confirm.addActionListener(new ActionListener() {
+//			public void actionPerformed(ActionEvent e) {
+//				if (!isValidCardNumber(cardNum.getText())) {
+//					JOptionPane.showMessageDialog(null, "Invalid Card Number. It can only be 6 digits.");
+//					return;
+//				}
+//				if (!isValidCVV(CVV.getText())) {
+//					JOptionPane.showMessageDialog(null, "Invalid CVV. It can only be 3 digits.");
+//					return;
+//				}
+//				
+//				if (!isValidCardDate(cardDate.getText())) {
+//					JOptionPane.showMessageDialog(null, "Invalid Card Expiration Date. It can only be in this format mm/dd/yyyy");
+//					return;
+//				}
+//				setVisible(false);
+//				ShowTicketGUI bsg;
+//				bsg = new ShowTicketGUI(ticketInfo);
+//				bsg.show();
+//			}
+//		});
+		confirmTicket(confirm, ticketInfo);
+		
+		buttonPanel.add(confirm);
+		
+		JPanel panel = new JPanel();
+        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+
+        // Add components to the panel
+        panel.add(createTextField("Name Seen on Card (e.g. Jane Doe) : ", cardName = new JTextField()));
+        panel.add(createTextField("6 Digit Card Number: ", cardNum = new JTextField()));
+        panel.add(createTextField("3 Digit CVV: ", CVV = new JTextField()));
+        panel.add(createTextField("Card Date: (e.g. '03/15/2023')", cardDate = new JTextField()));
+		
+		add(panel);
+	}
+	
+	private void confirmTicket(JButton confirm, TicketInfo ticketInfo) {
 		confirm.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (!isValidCardNumber(cardNum.getText())) {
@@ -118,19 +156,6 @@ public class PaymentGUI extends JFrame{
 				bsg.show();
 			}
 		});
-		
-		buttonPanel.add(confirm);
-		
-		JPanel panel = new JPanel();
-        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
-
-        // Add components to the panel
-        panel.add(createTextField("Name Seen on Card (e.g. Jane Doe) : ", cardName = new JTextField()));
-        panel.add(createTextField("6 Digit Card Number: ", cardNum = new JTextField()));
-        panel.add(createTextField("3 Digit CVV: ", CVV = new JTextField()));
-        panel.add(createTextField("Card Date: (e.g. '03/15/23')", cardDate = new JTextField()));
-		
-		add(panel);
 	}
 	
 	//	VALIDATION FUNCTIONS FOR CARD NUM, CVV, CARD DATE

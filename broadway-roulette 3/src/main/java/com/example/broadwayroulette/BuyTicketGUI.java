@@ -73,8 +73,20 @@ public class BuyTicketGUI extends JFrame{
 		buttonPanel.setBackground(Color.DARK_GRAY);
         // Add a button to perform the buy ticket action
         JButton buyButton = new JButton("PAY");
+        buyButton(buyButton);
         
-        buyButton.addActionListener(new ActionListener() {
+        buttonPanel.add(buyButton);
+		add(buttonPanel, BorderLayout.SOUTH);
+
+        // Add the panel to the content pane of the JFrame
+        add(panel);
+
+        // Fetch Broadway show data from the database and populate the table
+        fetchData();
+    }
+	
+	private void buyButton(JButton buyButton) {
+		buyButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String selectedShow = (String) showComboBox.getSelectedItem();
@@ -103,27 +115,9 @@ public class BuyTicketGUI extends JFrame{
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
-
-                // CREATE A BUY TICKET CLASS
-//                System.out.println("Selected Show 1 : " + selectedShow);
-//                System.out.println("Selected Show 2: " + selectedShow1);
-//                System.out.println("Selected Show 3: " + selectedShow2);
-//                System.out.println("First Name: " + firstName);
-//                System.out.println("Last Name: " + lastName);
-//                System.out.println("Home Address: " + address);
-//                System.out.println("")
             }
         });
-        
-        buttonPanel.add(buyButton);
-		add(buttonPanel, BorderLayout.SOUTH);
-
-        // Add the panel to the content pane of the JFrame
-        add(panel);
-
-        // Fetch Broadway show data from the database and populate the table
-        fetchData();
-    }
+	}
 	
 	private void fetchData() {
         try {
