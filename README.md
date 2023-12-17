@@ -1,4 +1,4 @@
-PLEASE RUN THE SQL FILE ON DBEAVER BEFORE RUNNING THE APPLCIATION. CLICK ON THE THIRD ORANGE BUTTON. 
+PLEASE RUN THE SQL FILE ON DBEAVER BEFORE RUNNING THE APPLCIATION. CLICK ON THE THIRD ORANGE BUTTON. Run Dbeaver and Docker at the same time.
 
 # OOP_Project
 We are creating a Broadway show ticket roulette where you let the computer choose your ticket fate. We will be using Java and SQL. 
